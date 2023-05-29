@@ -1,8 +1,18 @@
 import { useState } from "react";
 
-function GroupSelect(props: { handleTaxGroup: any }) {
+interface GroupSelectInterface {
+  handleTaxGroup: (value: number) => void;
+  buttonClicked: { id: string; nr: number };
+  setButtonClicked: (value: { id: string; nr: number }) => void;
+}
+
+function GroupSelect({
+  handleTaxGroup,
+  buttonClicked,
+  setButtonClicked,
+}: GroupSelectInterface) {
   const [classLength, setClassLength] = useState(0);
-  const [buttonClicked, setButtonClicked] = useState({ id: "", nr: 0 });
+
   const taxText = [
     localStorage.groupSelect0,
     localStorage.groupSelect1,
@@ -17,7 +27,7 @@ function GroupSelect(props: { handleTaxGroup: any }) {
         onClick={(e) => {
           setClassLength(e.currentTarget.classList.length);
           setButtonClicked({ id: e.currentTarget.id, nr: nr });
-          props.handleTaxGroup(e.currentTarget.classList.length > 1 ? 4 : nr);
+          handleTaxGroup(e.currentTarget.classList.length > 1 ? 4 : nr);
         }}
         id={id}
         className={`tButtons ${

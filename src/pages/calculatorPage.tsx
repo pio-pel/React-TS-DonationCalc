@@ -30,6 +30,7 @@ interface Result {
 function Calculator() {
   const defaultDate = setCalendarDefaultDate();
   const [calendarDate, setCalendarDate] = useState(defaultDate);
+
   const [inputDonationAmount, setinputDonationAmount] = useState("");
   const initialState_data: Data = {
     effectiveDate: "",
@@ -38,6 +39,8 @@ function Calculator() {
     table: "",
   };
   const [data, setData] = useState(initialState_data);
+  const initialButtonClicked = { id: "", nr: 4 };
+  const [buttonClicked, setButtonClicked] = useState(initialButtonClicked);
   const [selectedTaxGroup, setSelectedTaxGroup] = useState(4);
   const [isHidTrue, setIsHidTrue] = useState(false);
   const [validation, setValidation] = useState({
@@ -92,12 +95,24 @@ function Calculator() {
     }
   };
 
+  const defaultStates = () => {
+    setIsHidTrue(false);
+    setCalendarDate(defaultDate);
+    setinputDonationAmount("");
+    setButtonClicked(initialButtonClicked);
+    setSelectedCurrency(initialSelectedCurrency);
+  };
+
   return (
     <div id="main" className="container my-2">
       <div id="mainArea" className="row">
         <div id="left-side" className="col-lg-7">
           <div id="taxGroup" className="row">
-            <GroupSelect handleTaxGroup={setSelectedTaxGroup} />
+            <GroupSelect
+              handleTaxGroup={setSelectedTaxGroup}
+              buttonClicked={buttonClicked}
+              setButtonClicked={setButtonClicked}
+            />
           </div>
 
           <div id="calendarGroup" className="row">
@@ -243,7 +258,7 @@ function Calculator() {
                         type="button"
                         className="btn btn-success"
                         data-bs-dismiss="modal"
-                        onClick={() => window.location.reload()}
+                        onClick={defaultStates}
                       >
                         {localStorage.calculator8}
                       </button>
