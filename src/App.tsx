@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import LanguageChange from "./js/helpers/languageChange";
+import Layout from "./pages/layout";
+import Home from "./pages/homePage";
+import Calculator from "./pages/calculatorPage";
+import Forms from "./pages/formsPage";
+import Movies from "./pages/moviesPage";
 
 function App() {
+  const [languageButton, setLanguageButton] = useState(
+    localStorage.language ? localStorage.language : "pl"
+  );
+  new LanguageChange(languageButton).setLanguage();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout
+              languageButton={languageButton}
+              setLanguageButton={setLanguageButton}
+            />
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route index element={<Home />} />
+          <Route path="calculator" element={<Calculator />} />
+          <Route path="forms" element={<Forms />} />
+          <Route path="movies" element={<Movies />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
