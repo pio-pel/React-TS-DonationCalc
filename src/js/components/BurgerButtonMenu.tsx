@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../../pages/layout";
 
 export default function BurgerButtonMenu() {
+  const languagePack = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,19 +23,19 @@ export default function BurgerButtonMenu() {
       >
         <Link onClick={() => setIsOpen(!isOpen)} to="/">
           <i className="fa-solid fa-house">&nbsp;</i>
-          <span>{localStorage.offCanvasMenu1}</span>
+          <span>{languagePack.offCanvasMenu1}</span>
         </Link>
         <Link onClick={() => setIsOpen(!isOpen)} to="/calculator">
           <i className="fa-solid fa-calculator">&nbsp;</i>
-          <span>{localStorage.offCanvasMenu2}</span>
+          <span>{languagePack.offCanvasMenu2}</span>
         </Link>
         <Link onClick={() => setIsOpen(!isOpen)} to="/forms">
           <i className="fa-solid fa-file">&nbsp;</i>
-          <span>{localStorage.offCanvasMenu3}</span>
+          <span>{languagePack.offCanvasMenu3}</span>
         </Link>
         <Link onClick={() => setIsOpen(!isOpen)} to="/movies">
           <i className="fa-solid fa-film">&nbsp;</i>
-          <span>{localStorage.offCanvasMenu4}</span>
+          <span>{languagePack.offCanvasMenu4}</span>
         </Link>
       </div>
     </>

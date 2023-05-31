@@ -1,13 +1,15 @@
-export interface LanguageButtonInterface {
-  languageButton: string;
-  setLanguageButton: (value: string) => void;
+import languageChange from "../helpers/languageChange";
+
+export interface LanguageInterface {
+  languagePack: { [key: string]: string };
+  setLanguagePack: (value: { [key: string]: string }) => void;
 }
 
-export function LanguageButton({
-  languageButton,
-  setLanguageButton,
-}: LanguageButtonInterface) {
-  const polishIsTrue = languageButton === "pl" ? true : false;
+export default function LanguageButton({
+  languagePack,
+  setLanguagePack,
+}: LanguageInterface) {
+  const polishIsTrue = languagePack.PL ? true : false;
 
   return (
     <div
@@ -27,7 +29,7 @@ export function LanguageButton({
       <label
         className="btn btn-outline-light"
         htmlFor="btnradio1"
-        onClick={() => setLanguageButton("pl")}
+        onClick={() => setLanguagePack(languageChange("pl"))}
       >
         PL
       </label>
@@ -42,7 +44,7 @@ export function LanguageButton({
       <label
         className="btn btn-outline-light"
         htmlFor="btnradio2"
-        onClick={() => setLanguageButton("en")}
+        onClick={() => setLanguagePack(languageChange("en"))}
       >
         EN
       </label>

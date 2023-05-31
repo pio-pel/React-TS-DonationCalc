@@ -1,5 +1,6 @@
 ﻿{
   "pl": {
+    "PL": "pl",
     "offCanvasMenu1": "główna",
     "offCanvasMenu2": "kalkulator",
     "offCanvasMenu3": "formularze",
@@ -96,6 +97,7 @@
     "video3": "FORMULARZ SD-3"
   },
   "en": {
+    "EN": "en",
     "offCanvasMenu1": "main",
     "offCanvasMenu2": "calculator",
     "offCanvasMenu3": "forms",

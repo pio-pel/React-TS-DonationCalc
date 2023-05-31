@@ -1,54 +1,51 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { LanguageContext } from "../../pages/layout";
 
 interface GroupSelectInterface {
-  handleTaxGroup: (value: number) => void;
-  buttonClicked: { id: string; nr: number };
-  setButtonClicked: (value: { id: string; nr: number }) => void;
+  selectedTaxGroup: number | null;
+  setSelectedTaxGroup: (value: number | null) => void;
 }
 
 function GroupSelect({
-  handleTaxGroup,
-  buttonClicked,
-  setButtonClicked,
+  selectedTaxGroup,
+  setSelectedTaxGroup,
 }: GroupSelectInterface) {
-  const [classLength, setClassLength] = useState(0);
+  const languagePack = useContext(LanguageContext);
+  const commentForSelectedGroup =
+    languagePack[`groupSelect${selectedTaxGroup}`];
+  const commentDefault = languagePack.groupSelectNone;
 
-  const taxText = [
-    localStorage.groupSelect0,
-    localStorage.groupSelect1,
-    localStorage.groupSelect2,
-    localStorage.groupSelect3,
-    localStorage.groupSelectNone,
-  ];
-
-  function ButtonGroupSelect({ id, nr }: { id: string; nr: number }) {
+  function ButtonGroupSelect({
+    buttonNumber,
+  }: {
+    buttonNumber: { arabic: number; roman: string };
+  }) {
     return (
       <div
         onClick={(e) => {
-          setClassLength(e.currentTarget.classList.length);
-          setButtonClicked({ id: e.currentTarget.id, nr: nr });
-          handleTaxGroup(e.currentTarget.classList.length > 1 ? 4 : nr);
+          setSelectedTaxGroup(
+            e.currentTarget.classList.length > 1 ? null : buttonNumber.arabic
+          );
         }}
-        id={id}
         className={`tButtons ${
-          buttonClicked.id !== id ? "" : classLength > 1 ? "" : "buttonClicked"
+          selectedTaxGroup === buttonNumber.arabic ? "buttonClicked" : ""
         }`}
       >
-        {id}
+        {buttonNumber.roman}
       </div>
     );
   }
   return (
     <>
       <div id="taxGroupButtons" className="col-2">
-        <ButtonGroupSelect id='"0"' nr={0} />
-        <ButtonGroupSelect id="I" nr={1} />
-        <ButtonGroupSelect id="II" nr={2} />
-        <ButtonGroupSelect id="III" nr={3} />
+        <ButtonGroupSelect buttonNumber={{ arabic: 0, roman: '"0"' }} />
+        <ButtonGroupSelect buttonNumber={{ arabic: 1, roman: "I" }} />
+        <ButtonGroupSelect buttonNumber={{ arabic: 2, roman: "II" }} />
+        <ButtonGroupSelect buttonNumber={{ arabic: 3, roman: "III" }} />
       </div>
       <div id="taxGroupArea" className="col-10">
         <div className="tArea">
-          {classLength > 1 ? taxText[4] : taxText[buttonClicked.nr]}
+          {commentForSelectedGroup ? commentForSelectedGroup : commentDefault}
         </div>
       </div>
     </>

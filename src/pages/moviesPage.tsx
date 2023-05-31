@@ -1,9 +1,13 @@
-const moviesPage = () => {
+import { useContext } from "react";
+import { LanguageContext } from "./layout";
+
+const MoviesPage = () => {
+  const languagePack = useContext(LanguageContext);
   return (
     <div id="main" className="container my-5 pb-5">
       <div className="row">
         <div className="col-lg d-flex flex-column my-5 align-items-center">
-          <h4>{localStorage.video1}</h4>
+          <h4>{languagePack.video1}</h4>
           <iframe
             width="350px"
             height="200px"
@@ -15,7 +19,7 @@ const moviesPage = () => {
         </div>
 
         <div className="col-lg d-flex flex-column my-5 align-items-center">
-          <h4>{localStorage.video2}</h4>
+          <h4>{languagePack.video2}</h4>
           <iframe
             width="350px"
             height="200px"
@@ -26,7 +30,7 @@ const moviesPage = () => {
           ></iframe>
         </div>
         <div className="col-lg d-flex flex-column my-5 align-items-center">
-          <h4>{localStorage.video3}</h4>
+          <h4>{languagePack.video3}</h4>
           <iframe
             width="350px"
             height="200px"
@@ -41,4 +45,4 @@ const moviesPage = () => {
   );
 };
 
-export default moviesPage;
+export default MoviesPage;

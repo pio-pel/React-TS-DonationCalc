@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { LanguageContext } from "./layout";
 
-const homePage = () => {
+const HomePage = () => {
+  const languagePack = useContext(LanguageContext);
   return (
     <div id="main" className="container">
       <div className="row">
@@ -17,26 +20,26 @@ const homePage = () => {
 
         <div className="col-lg-8 my-3">
           <div>
-            <h4>{localStorage.index1}</h4>
-            <p>{localStorage.index2}</p>
+            <h4>{languagePack.index1}</h4>
+            <p>{languagePack.index2}</p>
           </div>
 
           <div>
-            <h4>{localStorage.index3}</h4>
-            <p>{localStorage.index4}</p>
+            <h4>{languagePack.index3}</h4>
+            <p>{languagePack.index4}</p>
             <p></p>
           </div>
           <div>
-            <h4>{localStorage.index5}</h4>
-            <p>{localStorage.index6}</p>
-            <p>{localStorage.index7}</p>
+            <h4>{languagePack.index5}</h4>
+            <p>{languagePack.index6}</p>
+            <p>{languagePack.index7}</p>
           </div>
           <div>
             <div className="countArea">
               <div id="toCalc">
                 <Link to="/calculator">
                   <i className="fa-solid fa-calculator">&nbsp;</i>
-                  <span>{localStorage.index8}</span>
+                  <span>{languagePack.index8}</span>
                 </Link>
               </div>
             </div>
@@ -47,4 +50,4 @@ const homePage = () => {
   );
 };
 
-export default homePage;
+export default HomePage;

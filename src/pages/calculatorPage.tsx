@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import setCalendarDefaultDate from "../js/helpers/setCalendarDefaultDate";
 import inputValidation from "../js/helpers/inputValidation";
 import GroupSelect from "../js/components/GroupSelect";
@@ -7,6 +7,7 @@ import CurrencyMenu from "../js/components/CurrencyMenu";
 import countResult from "../js/helpers/countResult";
 import ResultArea from "../js/components/ResultArea";
 import ValidationAlert from "../js/components/ValidationAlert";
+import { LanguageContext } from "./layout";
 
 const service = new NbpService(
   "https://api.nbp.pl/api/exchangerates/tables/a/"
@@ -28,20 +29,21 @@ interface Result {
 }
 
 function Calculator() {
+  const languagePack = useContext(LanguageContext);
   const defaultDate = setCalendarDefaultDate();
   const [calendarDate, setCalendarDate] = useState(defaultDate);
 
   const [inputDonationAmount, setinputDonationAmount] = useState("");
-  const initialState_data: Data = {
+
+  //It's 1:1 how data object from NBP looks
+  const initialStateData: Data = {
     effectiveDate: "",
     no: "",
     rates: [{ currency: "", code: "", mid: "" }],
     table: "",
   };
-  const [data, setData] = useState(initialState_data);
-  const initialButtonClicked = { id: "", nr: 4 };
-  const [buttonClicked, setButtonClicked] = useState(initialButtonClicked);
-  const [selectedTaxGroup, setSelectedTaxGroup] = useState(4);
+  const [data, setData] = useState(initialStateData);
+  const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
   const [isHidTrue, setIsHidTrue] = useState(false);
   const [validation, setValidation] = useState({
     isCalendarValid: true,
@@ -100,7 +102,6 @@ function Calculator() {
     setIsHidTrue(false);
     setCalendarDate(defaultDate);
     setinputDonationAmount("");
-    setButtonClicked(initialButtonClicked);
     setSelectedCurrency(initialSelectedCurrency);
   };
 
@@ -110,9 +111,8 @@ function Calculator() {
         <div id="left-side" className="col-lg-7">
           <div id="taxGroup" className="row">
             <GroupSelect
-              handleTaxGroup={setSelectedTaxGroup}
-              buttonClicked={buttonClicked}
-              setButtonClicked={setButtonClicked}
+              selectedTaxGroup={selectedTaxGroup}
+              setSelectedTaxGroup={setSelectedTaxGroup}
             />
           </div>
 
@@ -138,7 +138,7 @@ function Calculator() {
                         isCalendarValid: true,
                       }));
                       setCalendarDate(e.target.value);
-                      setData(initialState_data);
+                      setData(initialStateData);
                       setSelectedCurrency(initialSelectedCurrency);
                     }}
                     required
@@ -147,7 +147,7 @@ function Calculator() {
                     <ValidationAlert element="calendar" />
                   )}
                 </div>
-                <div id="calendarText">{localStorage.calculator2}</div>
+                <div id="calendarText">{languagePack.calculator2}</div>
               </div>
             </div>
           </div>
@@ -209,7 +209,7 @@ function Calculator() {
                     <ValidationAlert element="donationAmount" />
                   )}
                 </div>
-                <div id="curAreaText">{localStorage.calculator4}</div>
+                <div id="curAreaText">{languagePack.calculator4}</div>
               </div>
             </div>
           </div>
@@ -236,7 +236,7 @@ function Calculator() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="modalLabel">
-                        {localStorage.calculator5}
+                        {languagePack.calculator5}
                       </h5>
                       <button
                         type="button"
@@ -245,14 +245,14 @@ function Calculator() {
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div className="modal-body">{localStorage.calculator6}</div>
+                    <div className="modal-body">{languagePack.calculator6}</div>
                     <div className="modal-footer">
                       <button
                         type="button"
                         className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
-                        {localStorage.calculator7}
+                        {languagePack.calculator7}
                       </button>
                       <button
                         id="trashButtonYes"
@@ -261,7 +261,7 @@ function Calculator() {
                         data-bs-dismiss="modal"
                         onClick={defaultStates}
                       >
-                        {localStorage.calculator8}
+                        {languagePack.calculator8}
                       </button>
                     </div>
                   </div>
@@ -272,7 +272,7 @@ function Calculator() {
               <div id="countArea" className="countArea">
                 <div onClick={validateAndCountResult} id="countClick">
                   <i className="fa-solid fa-calculator"></i>
-                  <span> {localStorage.calculator9}</span>
+                  <span> {languagePack.calculator9}</span>
                 </div>
               </div>
             </div>

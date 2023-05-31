@@ -1,5 +1,8 @@
 //Menu currency-list filling by data from nbpService
 
+import { useContext } from "react";
+import { LanguageContext } from "../../pages/layout";
+
 interface Rates {
   rates: [{ code: string; mid: string; currency: string }];
   setSelectedCurrency: (value: {
@@ -10,6 +13,7 @@ interface Rates {
 }
 
 function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
+  const languagePack = useContext(LanguageContext);
   const currencyList = [];
 
   for (let rate of rates) {
@@ -23,7 +27,7 @@ function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
           className="dropdown-item"
         >
           <b>{`${rate.code}`}</b>
-          {` ${localStorage[rate.code]}`}
+          {` ${languagePack[rate.code]}`}
         </button>
       ),
     };

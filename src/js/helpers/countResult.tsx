@@ -4,7 +4,7 @@ import countTax from "./countTax";
 
 function countResult(
   { currency, code, mid }: { currency: string; code: string; mid: string },
-  selectedTaxGroup: number,
+  selectedTaxGroup: number | null,
   inputDonationAmount: string
 ) {
   const results: {

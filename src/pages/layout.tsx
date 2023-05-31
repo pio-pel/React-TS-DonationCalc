@@ -1,21 +1,22 @@
 import { Outlet } from "react-router-dom";
-import {
-  LanguageButton,
-  LanguageButtonInterface,
-} from "../js/components/LanguageButton";
+import { createContext, useState } from "react";
+import LanguageButton from "../js/components/LanguageButton";
 import BurgerButtonMenu from "../js/components/BurgerButtonMenu";
+import languageChange from "../js/helpers/languageChange";
 
-function Layout({
-  languageButton,
-  setLanguageButton,
-}: LanguageButtonInterface) {
+const defaultLanguagePL = languageChange("pl");
+export const LanguageContext = createContext(defaultLanguagePL);
+
+function Layout() {
+  const [languagePack, setLanguagePack] = useState(defaultLanguagePL);
+
   return (
-    <>
+    <LanguageContext.Provider value={languagePack}>
       <BurgerButtonMenu />
 
       <LanguageButton
-        languageButton={languageButton}
-        setLanguageButton={setLanguageButton}
+        languagePack={languagePack}
+        setLanguagePack={setLanguagePack}
       />
 
       <div id="header" className="container-fluid pb-3 pt-5 text-white">
@@ -33,7 +34,7 @@ function Layout({
           <i className="fa-solid fa-copyright"></i> Piotr Pelikan
         </div>
       </div>
-    </>
+    </LanguageContext.Provider>
   );
 }
 
