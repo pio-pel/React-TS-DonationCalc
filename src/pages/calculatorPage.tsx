@@ -96,6 +96,7 @@ function Calculator() {
   };
 
   const defaultStates = () => {
+    window.scrollTo(0, document.body.scrollTop);
     setIsHidTrue(false);
     setCalendarDate(defaultDate);
     setinputDonationAmount("");

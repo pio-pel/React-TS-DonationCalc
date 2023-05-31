@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import LanguageChange from "./js/helpers/languageChange";
+import languageChange from "./js/helpers/languageChange";
 import Layout from "./pages/layout";
 import Home from "./pages/homePage";
 import Calculator from "./pages/calculatorPage";
@@ -11,7 +11,7 @@ function App() {
   const [languageButton, setLanguageButton] = useState(
     localStorage.language ? localStorage.language : "pl"
   );
-  new LanguageChange(languageButton).setLanguage();
+  languageChange(languageButton);
 
   return (
     <BrowserRouter>
