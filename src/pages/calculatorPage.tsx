@@ -7,7 +7,7 @@ import CurrencyMenu from "../js/components/CurrencyMenu";
 import countResult from "../js/helpers/countResult";
 import ResultArea from "../js/components/ResultArea";
 import ValidationAlert from "../js/components/ValidationAlert";
-import { LanguageContext } from "./layout";
+import LanguageContext from "../js/components/LanguageContext";
 
 const service = new NbpService(
   "https://api.nbp.pl/api/exchangerates/tables/a/"
@@ -29,28 +29,24 @@ interface Result {
 }
 
 function Calculator() {
-  const languagePack = useContext(LanguageContext);
+  const {
+    calculatorPageSelectDate,
+    calculatorPageSelectCurrencyAndEnterAmount,
+    calculatorPageClearFormTitle,
+    calculatorPageClearFormAreYouSure,
+    calculatorPageClearFormAnswerNo,
+    calculatorPageClearFormAnswerYes,
+    calculatorPageResultButton,
+  } = useContext(LanguageContext);
   const defaultDate = setCalendarDefaultDate();
-  const [calendarDate, setCalendarDate] = useState(defaultDate);
 
-  const [inputDonationAmount, setinputDonationAmount] = useState("");
-
-  //It's 1:1 how data object from NBP looks
+  //It's how data object from NBP looks
   const initialStateData: Data = {
     effectiveDate: "",
     no: "",
     rates: [{ currency: "", code: "", mid: "" }],
     table: "",
   };
-  const [data, setData] = useState(initialStateData);
-  const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
-  const [isHidTrue, setIsHidTrue] = useState(false);
-  const [validation, setValidation] = useState({
-    isCalendarValid: true,
-    isSelectedCurrencyValid: true,
-    isDonationAmountValid: true,
-  });
-
   const initialResults: Result = {
     code: "",
     mid: "",
@@ -58,22 +54,35 @@ function Calculator() {
     taxAmount: 0.0,
     taxComment: "",
   };
-  const [result, setResult] = useState(initialResults);
-
   const initialSelectedCurrency = {
     currency: "",
     code: "",
     mid: "",
   };
+
+  const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
+  const [calendarDate, setCalendarDate] = useState(defaultDate);
+  const [inputDonationAmount, setinputDonationAmount] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState(
     initialSelectedCurrency
   );
+  const [data, setData] = useState(initialStateData);
 
+  const [isHidTrue, setIsHidTrue] = useState(false);
+  const [validation, setValidation] = useState({
+    isCalendarValid: true,
+    isDonationAmountValid: true,
+    isSelectedCurrencyValid: true,
+  });
+  const [result, setResult] = useState(initialResults);
+
+  //get data from NBP
   const dataFromNBP = async () => {
     const newData = await service.getCurrencyRates(calendarDate);
     if (newData) setData(newData);
   };
 
+  //return result if all forms/buttons are correct
   const validateAndCountResult = () => {
     const checkValidation = {
       isCalendarValid: !calendarDate ? false : true,
@@ -89,6 +98,8 @@ function Calculator() {
       setResult(
         countResult(selectedCurrency, selectedTaxGroup, inputDonationAmount)
       );
+
+      //show/hide result animation
       setIsHidTrue(false);
       setTimeout(() => {
         setIsHidTrue(true);
@@ -97,12 +108,14 @@ function Calculator() {
     }
   };
 
+  //set all states as default (clear button)
   const defaultStates = () => {
     window.scrollTo(0, document.body.scrollTop);
     setIsHidTrue(false);
     setCalendarDate(defaultDate);
     setinputDonationAmount("");
     setSelectedCurrency(initialSelectedCurrency);
+    setSelectedTaxGroup(null);
   };
 
   return (
@@ -144,10 +157,10 @@ function Calculator() {
                     required
                   />
                   {!validation.isCalendarValid && (
-                    <ValidationAlert element="calendar" />
+                    <ValidationAlert element="Calendar" />
                   )}
                 </div>
-                <div id="calendarText">{languagePack.calculator2}</div>
+                <div id="calendarText">{calculatorPageSelectDate}</div>
               </div>
             </div>
           </div>
@@ -168,7 +181,7 @@ function Calculator() {
                 )}
               </div>
               {!validation.isSelectedCurrencyValid && (
-                <ValidationAlert element="currencyMenu" />
+                <ValidationAlert element="CurrencyMenu" />
               )}
               <ul
                 onClick={(e) => {
@@ -206,10 +219,12 @@ function Calculator() {
                     required
                   />
                   {!validation.isDonationAmountValid && (
-                    <ValidationAlert element="donationAmount" />
+                    <ValidationAlert element="DonationAmount" />
                   )}
                 </div>
-                <div id="curAreaText">{languagePack.calculator4}</div>
+                <div id="curAreaText">
+                  {calculatorPageSelectCurrencyAndEnterAmount}
+                </div>
               </div>
             </div>
           </div>
@@ -228,7 +243,6 @@ function Calculator() {
               <div
                 className="modal fade"
                 id="modal"
-                // tabIndex="-1"
                 aria-labelledby="modalLabel"
                 aria-hidden="true"
               >
@@ -236,7 +250,7 @@ function Calculator() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="modalLabel">
-                        {languagePack.calculator5}
+                        {calculatorPageClearFormTitle}
                       </h5>
                       <button
                         type="button"
@@ -245,14 +259,16 @@ function Calculator() {
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div className="modal-body">{languagePack.calculator6}</div>
+                    <div className="modal-body">
+                      {calculatorPageClearFormAreYouSure}
+                    </div>
                     <div className="modal-footer">
                       <button
                         type="button"
                         className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
-                        {languagePack.calculator7}
+                        {calculatorPageClearFormAnswerNo}
                       </button>
                       <button
                         id="trashButtonYes"
@@ -261,7 +277,7 @@ function Calculator() {
                         data-bs-dismiss="modal"
                         onClick={defaultStates}
                       >
-                        {languagePack.calculator8}
+                        {calculatorPageClearFormAnswerYes}
                       </button>
                     </div>
                   </div>
@@ -272,7 +288,7 @@ function Calculator() {
               <div id="countArea" className="countArea">
                 <div onClick={validateAndCountResult} id="countClick">
                   <i className="fa-solid fa-calculator"></i>
-                  <span> {languagePack.calculator9}</span>
+                  <span> {calculatorPageResultButton}</span>
                 </div>
               </div>
             </div>

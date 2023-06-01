@@ -1,7 +1,7 @@
 //Menu currency-list filling by data from nbpService
 
 import { useContext } from "react";
-import { LanguageContext } from "../../pages/layout";
+import LanguageContext from "./LanguageContext";
 
 interface Rates {
   rates: [{ code: string; mid: string; currency: string }];

@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../pages/layout";
+import LanguageContext from "./LanguageContext";
 
 export default function ValidationAlert({ element }: { element: string }) {
   const languagePack = useContext(LanguageContext);
-  const elementAlert = element.concat("Alert");
+  const elementAlert = "alert".concat(element);
   return <div className="inputerror">{languagePack[elementAlert]}</div>;
 }

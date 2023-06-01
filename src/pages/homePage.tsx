@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { LanguageContext } from "./layout";
+import LanguageContext from "../js/components/LanguageContext";
 
 const HomePage = () => {
-  const languagePack = useContext(LanguageContext);
+  const {
+    homePageTitle1,
+    homePageTitle2,
+    homePageQuestion1,
+    homePageAnswer1,
+    homePageQuestion2,
+    homePageAnswer2,
+    homePageWhatYouCanFind,
+    homePageCalculatorButton,
+  } = useContext(LanguageContext);
   return (
     <div id="main" className="container">
       <div className="row">
@@ -20,26 +29,26 @@ const HomePage = () => {
 
         <div className="col-lg-8 my-3">
           <div>
-            <h4>{languagePack.index1}</h4>
-            <p>{languagePack.index2}</p>
+            <h4>{homePageTitle1}</h4>
+            <p>{homePageTitle2}</p>
           </div>
 
           <div>
-            <h4>{languagePack.index3}</h4>
-            <p>{languagePack.index4}</p>
+            <h4>{homePageQuestion1}</h4>
+            <p>{homePageAnswer1}</p>
             <p></p>
           </div>
           <div>
-            <h4>{languagePack.index5}</h4>
-            <p>{languagePack.index6}</p>
-            <p>{languagePack.index7}</p>
+            <h4>{homePageQuestion2}</h4>
+            <p>{homePageAnswer2}</p>
+            <p>{homePageWhatYouCanFind}</p>
           </div>
           <div>
             <div className="countArea">
               <div id="toCalc">
                 <Link to="/calculator">
                   <i className="fa-solid fa-calculator">&nbsp;</i>
-                  <span>{languagePack.index8}</span>
+                  <span>{homePageCalculatorButton}</span>
                 </Link>
               </div>
             </div>

@@ -1,19 +1,21 @@
-import countTax from "./countTax";
+import CountTax from "./countTax";
 
 // Return object with currency code, mid rate, result (value * mid rate), tax amount & comment
 
+interface Result {
+  code: string;
+  mid: string;
+  result: string;
+  taxAmount: number | string;
+  taxComment: string;
+}
+
 function countResult(
-  { currency, code, mid }: { currency: string; code: string; mid: string },
+  { currency, code, mid }: { currency: string; code: string; mid: string }, //currency if you want return full currency name instead of code
   selectedTaxGroup: number | null,
   inputDonationAmount: string
 ) {
-  const results: {
-    code: string;
-    mid: string;
-    result: string;
-    taxAmount: number | string;
-    taxComment: string;
-  } = {
+  const results: Result = {
     code: "",
     mid: "",
     result: "",
@@ -25,7 +27,7 @@ function countResult(
   results.mid = mid;
   results.code = code;
 
-  const taxAmountAndComment = countTax(selectedTaxGroup, results.result);
+  const taxAmountAndComment = CountTax(selectedTaxGroup, results.result);
   results.taxAmount = taxAmountAndComment.taxAmount;
   results.taxComment = taxAmountAndComment.taxComment;
 

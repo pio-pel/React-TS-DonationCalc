@@ -1,13 +1,14 @@
 import { useContext } from "react";
-import { LanguageContext } from "./layout";
+import LanguageContext from "../js/components/LanguageContext";
 
 const MoviesPage = () => {
-  const languagePack = useContext(LanguageContext);
+  const { moviesPageMovie1, moviesPageMovie2, moviesPageMovie3 } =
+    useContext(LanguageContext);
   return (
     <div id="main" className="container my-5 pb-5">
       <div className="row">
         <div className="col-lg d-flex flex-column my-5 align-items-center">
-          <h4>{languagePack.video1}</h4>
+          <h4>{moviesPageMovie1}</h4>
           <iframe
             width="350px"
             height="200px"
@@ -19,7 +20,7 @@ const MoviesPage = () => {
         </div>
 
         <div className="col-lg d-flex flex-column my-5 align-items-center">
-          <h4>{languagePack.video2}</h4>
+          <h4>{moviesPageMovie2}</h4>
           <iframe
             width="350px"
             height="200px"
@@ -30,7 +31,7 @@ const MoviesPage = () => {
           ></iframe>
         </div>
         <div className="col-lg d-flex flex-column my-5 align-items-center">
-          <h4>{languagePack.video3}</h4>
+          <h4>{moviesPageMovie3}</h4>
           <iframe
             width="350px"
             height="200px"

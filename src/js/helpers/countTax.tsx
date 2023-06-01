@@ -74,9 +74,9 @@ function countTax(selectedTaxGroup: number | null, result: string) {
       taxes.taxComment = "countTaxThree4";
     }
   }
-  if (selectedTaxGroup === 4) {
-    taxes.taxAmount = "countTaxInfo1";
-    taxes.taxComment = "countTaxInfo2";
+  if (selectedTaxGroup === null) {
+    taxes.taxAmount = "resultAreaTaxNoDataInfo";
+    taxes.taxComment = "resultAreaTaxNoSelectedTaxGroupInfo";
   }
   return taxes;
 }

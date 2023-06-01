@@ -1,6 +1,7 @@
 import YesDataFromNBP from "./YesDataFromNBP";
 import NoDataFromNBP from "./NoDataFromNBP";
 
+//Return currency menu (when data is available) or waiting spinner
 interface Rates {
   rates: [{ code: string; mid: string; currency: string }];
   setSelectedCurrency: (value: {

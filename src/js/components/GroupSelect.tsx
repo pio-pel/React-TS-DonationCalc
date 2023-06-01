@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../pages/layout";
+import LanguageContext from "./LanguageContext";
 
 interface GroupSelectInterface {
   selectedTaxGroup: number | null;
