@@ -1,0 +1,13 @@
+[33m69cbe34[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m6f0dafa[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{1}: commit: chore: delete useless files
+[33m69cbe34[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{2}: commit: refactor: change folder and extend for LanguageContext
+[33me863584[m HEAD@{3}: commit: refactor: change helpers extends .ts
+[33m0bba4d0[m HEAD@{4}: commit: fix: calculatorPage improve styles
+[33mf2a4e1b[m HEAD@{5}: commit: Upload
+[33m9177330[m HEAD@{6}: commit: Upload
+[33mff68e12[m HEAD@{7}: commit: Upload
+[33ma1bd891[m HEAD@{8}: commit: Upload
+[33mbcd5c38[m HEAD@{9}: commit: Upload
+[33m74d5010[m[33m ([m[1;31morigin/master[m[33m)[m HEAD@{10}: Branch: renamed refs/heads/master to refs/heads/main
+[33m74d5010[m[33m ([m[1;31morigin/master[m[33m)[m HEAD@{12}: commit: Upload
+[33mb5d2489[m HEAD@{13}: commit (initial): Initialize project using Create React App
