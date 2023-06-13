@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import LanguageContext from "../js/components/LanguageContext";
+import LanguageContext from "../components/LanguageContext";
 
 const MoviesPage = () => {
   const { moviesPageMovie1, moviesPageMovie2, moviesPageMovie3 } =

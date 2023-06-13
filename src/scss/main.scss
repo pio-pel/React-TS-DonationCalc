@@ -80,23 +80,10 @@ body {
   color: white;
 }
 
-#taxGroup,
-#calendarGroup,
-#currencyGroup,
-#countGroup {
-  margin: 5px auto 10px;
-}
-
-#taxGroupButtons,
 #taxGroupArea,
-#calendarGroupButtons,
 #calendarGroupArea,
-#currencyGroupButtons,
-#currencyGroupArea,
-#countGroupButtons,
-#countGroupArea,
-#countGroupButtons {
-  padding: 2px;
+#currencyGroupArea {
+  margin-bottom: 5px;
 }
 
 .tButtons,
@@ -109,11 +96,20 @@ body {
   color: white;
   border-radius: 2px;
   background-color: $dblue;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 20px 10px;
+  margin-right: -10px;
+  margin-bottom: 5px;
+  padding: 20px 5px;
   cursor: pointer;
   box-shadow: 2px 2px 4px $shadow;
+}
+
+.countArea {
+  margin-right: 0px;
+}
+
+.countArea,
+.trButtons {
+  margin-bottom: 0px;
 }
 
 .cButtons {
@@ -216,15 +212,21 @@ input:focus {
 
 #resultHiddenArea,
 #resultComments {
-  opacity: 1;
+  opacity: 0;
 }
 
-.hid {
+.hidResult {
   animation-name: zoom;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 
+.hidComment {
+  animation-name: zoom;
+  animation-delay: 0.1s;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
 @keyframes zoom {
   0% {
     opacity: 0;
@@ -233,7 +235,7 @@ input:focus {
 
   100% {
     opacity: 1;
-    ransform: scale(1);
+    transform: scale(1);
   }
 }
 

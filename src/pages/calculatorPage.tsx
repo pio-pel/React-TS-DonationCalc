@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
-import setCalendarDefaultDate from "../js/helpers/setCalendarDefaultDate";
-import inputValidation from "../js/helpers/inputValidation";
-import GroupSelect from "../js/components/GroupSelect";
-import NbpService from "../js/services/nbpService";
-import CurrencyMenu from "../js/components/CurrencyMenu";
-import countResult from "../js/helpers/countResult";
-import ResultArea from "../js/components/ResultArea";
-import ValidationAlert from "../js/components/ValidationAlert";
-import LanguageContext from "../js/components/LanguageContext";
+import setCalendarDefaultDate from "../helpers/setCalendarDefaultDate";
+import inputValidation from "../helpers/inputValidation";
+import GroupSelect from "../components/GroupSelect";
+import NbpService from "../services/nbpService";
+import CurrencyMenu from "../components/CurrencyMenu";
+import countResult from "../helpers/countResult";
+import ResultArea from "../components/ResultArea";
+import ValidationAlert from "../components/ValidationAlert";
+import LanguageContext from "../components/LanguageContext";
 
 const service = new NbpService(
   "https://api.nbp.pl/api/exchangerates/tables/a/"
@@ -119,17 +119,17 @@ function Calculator() {
   };
 
   return (
-    <div id="main" className="container my-2">
+    <div id="main" className="container">
       <div id="mainArea" className="row">
-        <div id="left-side" className="col-lg-7">
-          <div id="taxGroup" className="row">
+        <div id="left-side" className="col-lg-7 my-3">
+          <div id="taxGroup" className="row mb-2">
             <GroupSelect
               selectedTaxGroup={selectedTaxGroup}
               setSelectedTaxGroup={setSelectedTaxGroup}
             />
           </div>
 
-          <div id="calendarGroup" className="row">
+          <div id="calendarGroup" className="row mb-2">
             <div id="calendarGroupButtons" className="col-2">
               <div className="cButtons">
                 <i className="fa-regular fa-calendar-days"></i>
@@ -141,7 +141,6 @@ function Calculator() {
                   <input
                     id="calendarInput"
                     type="date"
-                    title="Wybierz datę darowizny"
                     min="2022-10-13"
                     max={defaultDate}
                     value={calendarDate}
@@ -165,7 +164,7 @@ function Calculator() {
             </div>
           </div>
 
-          <div id="currencyGroup" className="row">
+          <div id="currencyGroup" className="row mb-2">
             <div id="currencyGroupButtons" className="col-2">
               <div
                 onClick={dataFromNBP}
@@ -233,7 +232,6 @@ function Calculator() {
             <div id="countGroupButtons" className="col-2">
               <div
                 id="trashButton"
-                // type="button"
                 className="trButtons"
                 data-bs-toggle="modal"
                 data-bs-target="#modal"
@@ -285,8 +283,12 @@ function Calculator() {
               </div>
             </div>
             <div id="countGroupArea" className="col-10">
-              <div id="countArea" className="countArea">
-                <div onClick={validateAndCountResult} id="countClick">
+              <div
+                onClick={validateAndCountResult}
+                id="countArea"
+                className="countArea"
+              >
+                <div>
                   <i className="fa-solid fa-calculator"></i>
                   <span> {calculatorPageResultButton}</span>
                 </div>
@@ -295,7 +297,7 @@ function Calculator() {
           </div>
         </div>
 
-        <div id="right-side" className="col-lg-5 my-2">
+        <div id="right-side" className="col-lg-5 my-3">
           <ResultArea
             result={result}
             date={data.effectiveDate}
