@@ -7,7 +7,7 @@ import CurrencyMenu from "../components/CurrencyMenu";
 import countResult from "../helpers/countResult";
 import ResultArea from "../components/ResultArea";
 import ValidationAlert from "../components/ValidationAlert";
-import LanguageContext from "../components/LanguageContext";
+import LanguageContext from "../contexts/LanguageContext";
 
 const service = new NbpService(
   "https://api.nbp.pl/api/exchangerates/tables/a/"

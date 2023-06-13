@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import LanguageContext from "../components/LanguageContext";
+import LanguageContext from "../contexts/LanguageContext";
 
 const HomePage = () => {
   const {

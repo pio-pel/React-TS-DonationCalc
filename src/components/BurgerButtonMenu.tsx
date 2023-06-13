@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import LanguageContext from "./LanguageContext";
+import LanguageContext from "../contexts/LanguageContext";
 
 export default function BurgerButtonMenu() {
   const {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import LanguageButton from "./LanguageButton";
 import BurgerButtonMenu from "./BurgerButtonMenu";
 import languageChange from "../helpers/languageChange";
-import LanguageContext from "./LanguageContext";
+import LanguageContext from "../contexts/LanguageContext";
 
 function Layout() {
   const [languagePack, setLanguagePack] = useState(languageChange("pl"));
