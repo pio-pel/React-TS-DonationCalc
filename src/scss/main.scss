@@ -1,8 +1,8 @@
 $dblue: #004152;
 $blue: #028caf;
 $orange: #ff9925;
-$shadow: #505050;
-$alert: #a00000;
+$alert-color: #a00000;
+$shadow: 2px 2px 4px #505050;
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -43,8 +43,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 4px $shadow;
-  text-shadow: 2px 2px 4px $shadow;
+  box-shadow: $shadow;
+  text-shadow: $shadow;
 }
 
 #header > div {
@@ -100,7 +100,7 @@ body {
   margin-bottom: 5px;
   padding: 20px 5px;
   cursor: pointer;
-  box-shadow: 2px 2px 4px $shadow;
+  box-shadow: $shadow;
 }
 
 .countArea {
@@ -136,7 +136,7 @@ body {
   padding: 5px 5px;
   text-align: center;
   height: 100%;
-  box-shadow: 2px 2px 4px $shadow;
+  box-shadow: $shadow;
 }
 
 .tArea {
@@ -156,14 +156,9 @@ input {
   background-color: white;
   border: 2px solid #004152;
   border-radius: 3px;
-  box-shadow: 2px 2px 4px $shadow;
+  box-shadow: $shadow;
   padding: 5px;
   margin: 1px;
-}
-
-#calendarInput:invalid,
-#enteredSum:invalid {
-  border-color: $alert;
 }
 
 input:focus {
@@ -173,7 +168,9 @@ input:focus {
 .curButtons:hover,
 .tButtons:hover,
 .countArea:hover,
-.trButtons:hover {
+.trButtons:hover,
+#calendarInput:hover,
+#enteredSum:hover {
   outline: 3px solid $orange;
 }
 
@@ -196,7 +193,7 @@ input:focus {
   border-radius: 2px;
   padding: 5px 5px;
   height: 100%;
-  box-shadow: 2px 2px 4px $shadow;
+  box-shadow: $shadow;
 }
 
 #donationIco {
@@ -242,11 +239,11 @@ input:focus {
 .inputerror {
   text-align: center;
   font-size: small;
-  color: $alert;
+  color: $alert-color;
   background-color: #dddddd;
   border: 1px solid $dblue;
   border-radius: 3px;
-  box-shadow: 2px 2px 4px $shadow;
+  box-shadow: $shadow;
 }
 
 iframe {
