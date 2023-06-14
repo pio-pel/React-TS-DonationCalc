@@ -2,17 +2,30 @@ import ValidationAlert from "./ValidationAlert";
 import LanguageContext from "../contexts/LanguageContext";
 import { useContext } from "react";
 
+type ValidationType = { [key: string]: boolean };
+type SelectedCurrencyType = { [key: string]: string };
+
+interface CalendarInterface {
+  defaultDate: string;
+  calendarDate: string;
+  setCalendarDate: (value: string) => void;
+  validation: ValidationType;
+  setValidation: (value: ValidationType) => void;
+  initialSelectedCurrency: SelectedCurrencyType;
+  setSelectedCurrency: (value: SelectedCurrencyType) => void;
+  setIsHidTrue: (value: boolean) => void;
+}
+
 export function CalendarGroup({
   defaultDate,
   calendarDate,
+  setCalendarDate,
   validation,
   setValidation,
-  setCalendarDate,
-  setData,
-  setSelectedCurrency,
-  initialStateData,
   initialSelectedCurrency,
-}: any) {
+  setSelectedCurrency,
+  setIsHidTrue,
+}: CalendarInterface) {
   const { calculatorPageSelectDate } = useContext(LanguageContext);
 
   return (
@@ -32,13 +45,10 @@ export function CalendarGroup({
               max={defaultDate}
               value={calendarDate}
               onChange={(e) => {
-                setValidation((validation: any) => ({
-                  ...validation,
-                  isCalendarValid: true,
-                }));
+                setValidation({ ...validation, isCalendarValid: true });
                 setCalendarDate(e.target.value);
-                setData(initialStateData);
                 setSelectedCurrency(initialSelectedCurrency);
+                setIsHidTrue(false);
               }}
               required
             />

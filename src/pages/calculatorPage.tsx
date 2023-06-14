@@ -1,13 +1,15 @@
 import { useState, useContext } from "react";
 import setCalendarDefaultDate from "../helpers/setCalendarDefaultDate";
 import inputValidation from "../helpers/inputValidation";
-import GroupSelect from "../components/GroupSelect";
 import NbpService from "../services/nbpService";
 import CurrencyMenu from "../components/CurrencyMenu";
 import countResult from "../helpers/countResult";
 import ResultArea from "../components/ResultArea";
 import ValidationAlert from "../components/ValidationAlert";
 import LanguageContext from "../contexts/LanguageContext";
+import { TaxGroup } from "../components/TaxGroup";
+import { CalendarGroup } from "../components/CalendarGroup";
+import { CountGroup } from "../components/CountGroup";
 
 const service = new NbpService(
   "https://api.nbp.pl/api/exchangerates/tables/a/"
@@ -29,15 +31,8 @@ interface Result {
 }
 
 function Calculator() {
-  const {
-    calculatorPageSelectDate,
-    calculatorPageSelectCurrencyAndEnterAmount,
-    calculatorPageClearFormTitle,
-    calculatorPageClearFormAreYouSure,
-    calculatorPageClearFormAnswerNo,
-    calculatorPageClearFormAnswerYes,
-    calculatorPageResultButton,
-  } = useContext(LanguageContext);
+  const { calculatorPageSelectCurrencyAndEnterAmount } =
+    useContext(LanguageContext);
   const defaultDate = setCalendarDefaultDate();
 
   //It's how data object from NBP looks
@@ -63,13 +58,13 @@ function Calculator() {
   const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
   const [calendarDate, setCalendarDate] = useState(defaultDate);
   const [inputDonationAmount, setinputDonationAmount] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState(
-    initialSelectedCurrency
-  );
+  const [selectedCurrency, setSelectedCurrency] = useState<{
+    [key: string]: string;
+  }>(initialSelectedCurrency);
   const [data, setData] = useState(initialStateData);
 
   const [isHidTrue, setIsHidTrue] = useState(false);
-  const [validation, setValidation] = useState({
+  const [validation, setValidation] = useState<{ [key: string]: boolean }>({
     isCalendarValid: true,
     isDonationAmountValid: true,
     isSelectedCurrencyValid: true,
@@ -122,47 +117,21 @@ function Calculator() {
     <div id="main" className="container">
       <div id="mainArea" className="row">
         <div id="left-side" className="col-lg-7 my-3">
-          <div id="taxGroup" className="row mb-2">
-            <GroupSelect
-              selectedTaxGroup={selectedTaxGroup}
-              setSelectedTaxGroup={setSelectedTaxGroup}
-            />
-          </div>
+          <TaxGroup
+            selectedTaxGroup={selectedTaxGroup}
+            setSelectedTaxGroup={setSelectedTaxGroup}
+          />
 
-          <div id="calendarGroup" className="row mb-2">
-            <div id="calendarGroupButtons" className="col-2">
-              <div className="cButtons">
-                <i className="fa-regular fa-calendar-days"></i>
-              </div>
-            </div>
-            <div id="calendarGroupArea" className="col-10">
-              <div className="cArea">
-                <div id="calendarInputArea">
-                  <input
-                    id="calendarInput"
-                    type="date"
-                    min="2022-10-13"
-                    max={defaultDate}
-                    value={calendarDate}
-                    onChange={(e) => {
-                      setValidation((validation) => ({
-                        ...validation,
-                        isCalendarValid: true,
-                      }));
-                      setCalendarDate(e.target.value);
-                      setData(initialStateData);
-                      setSelectedCurrency(initialSelectedCurrency);
-                    }}
-                    required
-                  />
-                  {!validation.isCalendarValid && (
-                    <ValidationAlert element="Calendar" />
-                  )}
-                </div>
-                <div id="calendarText">{calculatorPageSelectDate}</div>
-              </div>
-            </div>
-          </div>
+          <CalendarGroup
+            defaultDate={defaultDate}
+            calendarDate={calendarDate}
+            setCalendarDate={setCalendarDate}
+            validation={validation}
+            setValidation={setValidation}
+            initialSelectedCurrency={initialSelectedCurrency}
+            setSelectedCurrency={setSelectedCurrency}
+            setIsHidTrue={setIsHidTrue}
+          />
 
           <div id="currencyGroup" className="row mb-2">
             <div id="currencyGroupButtons" className="col-2">
@@ -176,18 +145,18 @@ function Calculator() {
                 {selectedCurrency.code.length > 0 ? (
                   selectedCurrency.code
                 ) : (
-                  <i className="fa-solid fa-coins"></i>
+                  <i className="fa-solid fa-coins" />
                 )}
               </div>
               {!validation.isSelectedCurrencyValid && (
                 <ValidationAlert element="CurrencyMenu" />
               )}
               <ul
-                onClick={(e) => {
-                  setValidation((validation) => ({
+                onClick={() => {
+                  setValidation({
                     ...validation,
                     isSelectedCurrencyValid: true,
-                  }));
+                  });
                 }}
                 id="currencyChooseMenu"
                 className="dropdown-menu"
@@ -209,10 +178,10 @@ function Calculator() {
                     title=""
                     value={inputDonationAmount}
                     onChange={(e) => {
-                      setValidation((validation) => ({
+                      setValidation({
                         ...validation,
                         isDonationAmountValid: true,
-                      }));
+                      });
                       setinputDonationAmount(inputValidation(e.target.value));
                     }}
                     required
@@ -227,74 +196,10 @@ function Calculator() {
               </div>
             </div>
           </div>
-
-          <div id="countGroup" className="row">
-            <div id="countGroupButtons" className="col-2">
-              <div
-                id="trashButton"
-                className="trButtons"
-                data-bs-toggle="modal"
-                data-bs-target="#modal"
-              >
-                <i className="fa-solid fa-trash"></i>
-              </div>
-              <div
-                className="modal fade"
-                id="modal"
-                aria-labelledby="modalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-dialog-centered">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="modalLabel">
-                        {calculatorPageClearFormTitle}
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div className="modal-body">
-                      {calculatorPageClearFormAreYouSure}
-                    </div>
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        {calculatorPageClearFormAnswerNo}
-                      </button>
-                      <button
-                        id="trashButtonYes"
-                        type="button"
-                        className="btn btn-success"
-                        data-bs-dismiss="modal"
-                        onClick={defaultStates}
-                      >
-                        {calculatorPageClearFormAnswerYes}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="countGroupArea" className="col-10">
-              <div
-                onClick={validateAndCountResult}
-                id="countArea"
-                className="countArea"
-              >
-                <div>
-                  <i className="fa-solid fa-calculator"></i>
-                  <span> {calculatorPageResultButton}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CountGroup
+            defaultStates={defaultStates}
+            validateAndCountResult={validateAndCountResult}
+          />
         </div>
 
         <div id="right-side" className="col-lg-5 my-3">

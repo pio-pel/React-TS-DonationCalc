@@ -11,7 +11,7 @@ interface Result {
 }
 
 function countResult(
-  { currency, code, mid }: { currency: string; code: string; mid: string }, //currency if you want return full currency name instead of code
+  { currency, code, mid }: { [key: string]: string }, //currency if you want return full currency name instead of code
   selectedTaxGroup: number | null,
   inputDonationAmount: string
 ) {
