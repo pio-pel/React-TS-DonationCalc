@@ -20,11 +20,10 @@ body {
   color: #dddddd;
   font-size: 40px;
   cursor: pointer;
-}
-
-#burgerButton:hover {
-  color: $orange;
-  transition: 0.4s;
+  &:hover {
+    color: $orange;
+    transition: 0.4s;
+  }
 }
 
 #languageButton,
@@ -67,17 +66,15 @@ body {
   text-align: left;
   margin-left: 20px;
   margin-top: 30px;
-
   text-decoration: none;
   font-size: 25px;
   color: #999999;
   display: block;
   transition: 0.4s;
   text-shadow: none;
-}
-
-.offCanvasMenuClass a:hover {
-  color: white;
+  &:hover {
+    color: white;
+  }
 }
 
 #taxGroupArea,
@@ -96,7 +93,6 @@ body {
   color: white;
   border-radius: 2px;
   background-color: $dblue;
-
   margin-bottom: 5px;
   padding: 20px 5px;
   cursor: pointer;
@@ -159,19 +155,20 @@ input {
   box-shadow: $shadow;
   padding: 5px;
   margin: 1px;
+  &:focus {
+    outline: 0px solid $dblue;
+  }
 }
 
-input:focus {
-  outline: 0px solid $dblue;
-}
-
-.curButtons:hover,
-.tButtons:hover,
-.countArea:hover,
-.trButtons:hover,
-#calendarInput:hover,
-#enteredSum:hover {
-  outline: 3px solid $orange;
+.curButtons,
+.tButtons,
+.countArea,
+.trButtons,
+#calendarInput,
+#enteredSum {
+  &:hover {
+    outline: 3px solid $orange;
+  }
 }
 
 #currencyChooseMenu {

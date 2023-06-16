@@ -1,74 +1,33 @@
 import { useState } from "react";
-import setCalendarDefaultDate from "../helpers/setCalendarDefaultDate";
-import NbpService from "../services/nbpService";
 import countResult from "../helpers/countResult";
 import ResultArea from "../components/ResultArea";
 import { TaxGroup } from "../components/TaxGroup";
 import { CalendarGroup } from "../components/CalendarGroup";
 import { CountGroup } from "../components/CountGroup";
 import { CurrencyGroup } from "../components/CurrencyGroup";
-
-const service = new NbpService(
-  "https://api.nbp.pl/api/exchangerates/tables/a/"
-);
-
-interface Data {
-  effectiveDate: string;
-  no: string;
-  rates: [{ currency: string; code: string; mid: string }];
-  table: string;
-}
-
-interface Result {
-  code: string;
-  mid: string;
-  result: string;
-  taxAmount: number | string;
-  taxComment: string;
-}
+import { animationResultShowHide } from "../helpers/animationResultShowHide";
+import {
+  defaultDate,
+  service,
+  initialResults,
+  initialSelectedCurrency,
+  initialStateData,
+  initialValidation,
+} from "../consts/consts";
 
 function Calculator() {
-  const defaultDate = setCalendarDefaultDate();
-
-  //It's how data object from NBP looks
-  const initialStateData: Data = {
-    effectiveDate: "",
-    no: "",
-    rates: [{ currency: "", code: "", mid: "" }],
-    table: "",
-  };
-  const initialResults: Result = {
-    code: "",
-    mid: "",
-    result: "",
-    taxAmount: 0.0,
-    taxComment: "",
-  };
-  const initialSelectedCurrency = {
-    currency: "",
-    code: "",
-    mid: "",
-  };
-
-  const initialValidation = {
-    isCalendarValid: true,
-    isDonationAmountValid: true,
-    isSelectedCurrencyValid: true,
-  };
-
-  const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
   const [calendarDate, setCalendarDate] = useState(defaultDate);
+  const [data, setData] = useState(initialStateData);
   const [inputDonationAmount, setInputDonationAmount] = useState("");
+  const [isHidTrue, setIsHidTrue] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState<{
     [key: string]: string;
   }>(initialSelectedCurrency);
-  const [data, setData] = useState(initialStateData);
-
-  const [isHidTrue, setIsHidTrue] = useState(false);
+  const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
+  const [result, setResult] = useState(initialResults);
   const [validation, setValidation] = useState<{ [key: string]: boolean }>(
     initialValidation
   );
-  const [result, setResult] = useState(initialResults);
 
   //get data from NBP
   const dataFromNBP = async () => {
@@ -92,13 +51,7 @@ function Calculator() {
       setResult(
         countResult(selectedCurrency, selectedTaxGroup, inputDonationAmount)
       );
-
-      //show/hide result animation
-      setIsHidTrue(false);
-      setTimeout(() => {
-        setIsHidTrue(true);
-      }, 1);
-      window.scrollTo(0, document.body.scrollHeight);
+      animationResultShowHide(setIsHidTrue);
     }
   };
 
