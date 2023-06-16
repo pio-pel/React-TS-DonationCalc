@@ -12,12 +12,7 @@ interface CurrencyGroupInterface {
   setSelectedCurrency: (value: { [key: string]: string }) => void;
   inputDonationAmount: string;
   setInputDonationAmount: (value: string) => void;
-  data: {
-    effectiveDate: string;
-    no: string;
-    rates: [{ currency: string; code: string; mid: string }];
-    table: string;
-  };
+  dataRates: [{ currency: string; code: string; mid: string }];
 }
 
 export function CurrencyGroup({
@@ -25,7 +20,7 @@ export function CurrencyGroup({
   selectedCurrency,
   validation,
   setValidation,
-  data,
+  dataRates,
   setSelectedCurrency,
   inputDonationAmount,
   setInputDonationAmount,
@@ -63,7 +58,7 @@ export function CurrencyGroup({
           className="dropdown-menu"
         >
           <CurrencyMenu
-            rates={data.rates}
+            rates={dataRates}
             setSelectedCurrency={setSelectedCurrency}
           />
         </ul>

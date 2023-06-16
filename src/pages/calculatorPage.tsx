@@ -136,7 +136,7 @@ function Calculator() {
             selectedCurrency={selectedCurrency}
             validation={validation}
             setValidation={setValidation}
-            data={data}
+            dataRates={data.rates}
             setSelectedCurrency={setSelectedCurrency}
             inputDonationAmount={inputDonationAmount}
             setInputDonationAmount={setInputDonationAmount}
@@ -158,5 +158,4 @@ function Calculator() {
     </div>
   );
 }
-
 export default Calculator;
