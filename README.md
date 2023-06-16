@@ -1,64 +1,32 @@
-Instalacja i uruchomienie
+# Foreign currency donation calculator
 
-1. npm i
-2. npm start
+it's easy-to-use tool to calculate donation and tax in PLN.
 
+## Installation
 
-1. Tytu³ projektu
+Use the package manager to install and run app
 
-"Kalkulator darowizny w walucie obcej"
+```npm
+npm i
+npm start
+```
 
+## Visuals
 
-2. U¿yte technologie i biblioteki
+![Alt text](screen.jpg)
 
-- React
-- TypeScript
-- JavaScript
-- HTML
-- CSS
-- JSON
-- Bootstrap
-- FontAwesome
+## Usage
 
-3. Opis projektu
+Let's check how it works!
 
-Aplikacja ³¹cz¹ca w sobie 2 narzêdzia:
-- kalkulator walutowy
-- kalkulator nale¿nego podatku
+https://pio-pel.github.io/
 
-"Kalkulator darowizny w walucie obcej" to pierwsza aplikacja tego typu.
-U¿ytkownik w jednym miejscu otrzymuje dane niezbêdne do wype³nienia deklaracji podatkowej oraz informacje o wysokoœci podatku do zap³acenia. 
+## Description
 
+RCDC it's a easy-to-use tool.
 
-Na podstawie danych, jakie wprowadza u¿ytkownik, tj.:
-- grupa podatkowa
-- data otrzymania darowizny
-- waluta
-- wartoœæ
-
-kalkulator automatycznie wybiera w³aœciwe notowanie i zwraca wynik w postaci:
-- nazwy waluty
-- data notowania
-- kurs œredni waluty
-- darowizna PLN
-- podatek PLN
-
-W celu pobrania danych do nowych zapytañ kalkulator ³¹czy siê z API NBP.
-Menu z list¹ walut obcych wype³nia siê po otrzymaniu tabeli z NBP.
-
-Ponowne zapytania do tej samej daty (nawet po wielokrotnej zmianie daty) zwracane s¹ z obiektu w aplikacji celem przyspieszenia dzia³ania.
-
-Kalkulator posiada polsk¹ i angielsk¹ wersjê jêzykow¹.
-
-4. Budowa projektu
-
-Projekt sk³ada siê z 4 stron:
-- strona startowa z opisem
-- kalkulator
-- formularze
-- filmy
-
-
-Zapraszam!
-
-Piotr Pelikan
+1. Choose tax group right for you (see description next to buttons)
+2. Choose a date when you received your donation
+3. Select currency
+4. Enter donation amount
+5. Click "Count" to get a result
