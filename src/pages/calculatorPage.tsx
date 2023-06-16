@@ -133,7 +133,7 @@ function Calculator() {
             setIsHidTrue={setIsHidTrue}
           />
 
-          <div id="currencyGroup" className="row mb-2">
+          <div id="currencyGroup" className="row mb-2 gx-2">
             <div id="currencyGroupButtons" className="col-2">
               <div
                 onClick={dataFromNBP}

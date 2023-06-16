@@ -19,7 +19,7 @@ export function CountGroup({
   } = useContext(LanguageContext);
 
   return (
-    <div id="countGroup" className="row">
+    <div id="countGroup" className="row gx-2">
       <div id="countGroupButtons" className="col-2">
         <div
           id="trashButton"

@@ -36,7 +36,7 @@ export function TaxGroup({
     );
   }
   return (
-    <div id="taxGroup" className="row mb-2">
+    <div id="taxGroup" className="row mb-2 gx-2">
       <div id="taxGroupButtons" className="col-2">
         <ButtonGroupSelect buttonNumber={{ arabic: 0, roman: '"0"' }} />
         <ButtonGroupSelect buttonNumber={{ arabic: 1, roman: "I" }} />

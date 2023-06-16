@@ -29,7 +29,7 @@ export function CalendarGroup({
   const { calculatorPageSelectDate } = useContext(LanguageContext);
 
   return (
-    <div id="calendarGroup" className="row mb-2">
+    <div id="calendarGroup" className="row mb-2 gx-2">
       <div id="calendarGroupButtons" className="col-2">
         <div className="cButtons">
           <i className="fa-regular fa-calendar-days"></i>
