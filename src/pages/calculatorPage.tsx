@@ -1,15 +1,12 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import setCalendarDefaultDate from "../helpers/setCalendarDefaultDate";
-import inputValidation from "../helpers/inputValidation";
 import NbpService from "../services/nbpService";
-import CurrencyMenu from "../components/CurrencyMenu";
 import countResult from "../helpers/countResult";
 import ResultArea from "../components/ResultArea";
-import ValidationAlert from "../components/ValidationAlert";
-import LanguageContext from "../contexts/LanguageContext";
 import { TaxGroup } from "../components/TaxGroup";
 import { CalendarGroup } from "../components/CalendarGroup";
 import { CountGroup } from "../components/CountGroup";
+import { CurrencyGroup } from "../components/CurrencyGroup";
 
 const service = new NbpService(
   "https://api.nbp.pl/api/exchangerates/tables/a/"
@@ -31,8 +28,6 @@ interface Result {
 }
 
 function Calculator() {
-  const { calculatorPageSelectCurrencyAndEnterAmount } =
-    useContext(LanguageContext);
   const defaultDate = setCalendarDefaultDate();
 
   //It's how data object from NBP looks
@@ -55,20 +50,24 @@ function Calculator() {
     mid: "",
   };
 
+  const initialValidation = {
+    isCalendarValid: true,
+    isDonationAmountValid: true,
+    isSelectedCurrencyValid: true,
+  };
+
   const [selectedTaxGroup, setSelectedTaxGroup] = useState<number | null>(null);
   const [calendarDate, setCalendarDate] = useState(defaultDate);
-  const [inputDonationAmount, setinputDonationAmount] = useState("");
+  const [inputDonationAmount, setInputDonationAmount] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState<{
     [key: string]: string;
   }>(initialSelectedCurrency);
   const [data, setData] = useState(initialStateData);
 
   const [isHidTrue, setIsHidTrue] = useState(false);
-  const [validation, setValidation] = useState<{ [key: string]: boolean }>({
-    isCalendarValid: true,
-    isDonationAmountValid: true,
-    isSelectedCurrencyValid: true,
-  });
+  const [validation, setValidation] = useState<{ [key: string]: boolean }>(
+    initialValidation
+  );
   const [result, setResult] = useState(initialResults);
 
   //get data from NBP
@@ -108,9 +107,10 @@ function Calculator() {
     window.scrollTo(0, document.body.scrollTop);
     setIsHidTrue(false);
     setCalendarDate(defaultDate);
-    setinputDonationAmount("");
+    setInputDonationAmount("");
     setSelectedCurrency(initialSelectedCurrency);
     setSelectedTaxGroup(null);
+    setValidation(initialValidation);
   };
 
   return (
@@ -121,7 +121,6 @@ function Calculator() {
             selectedTaxGroup={selectedTaxGroup}
             setSelectedTaxGroup={setSelectedTaxGroup}
           />
-
           <CalendarGroup
             defaultDate={defaultDate}
             calendarDate={calendarDate}
@@ -132,70 +131,16 @@ function Calculator() {
             setSelectedCurrency={setSelectedCurrency}
             setIsHidTrue={setIsHidTrue}
           />
-
-          <div id="currencyGroup" className="row mb-2 gx-2">
-            <div id="currencyGroupButtons" className="col-2">
-              <div
-                onClick={dataFromNBP}
-                id="currencyChoose"
-                // type="button"
-                className="dropdown-toggle curButtons"
-                data-bs-toggle="dropdown"
-              >
-                {selectedCurrency.code.length > 0 ? (
-                  selectedCurrency.code
-                ) : (
-                  <i className="fa-solid fa-coins" />
-                )}
-              </div>
-              {!validation.isSelectedCurrencyValid && (
-                <ValidationAlert element="CurrencyMenu" />
-              )}
-              <ul
-                onClick={() => {
-                  setValidation({
-                    ...validation,
-                    isSelectedCurrencyValid: true,
-                  });
-                }}
-                id="currencyChooseMenu"
-                className="dropdown-menu"
-              >
-                <CurrencyMenu
-                  rates={data.rates}
-                  setSelectedCurrency={setSelectedCurrency}
-                />
-              </ul>
-            </div>
-            <div id="currencyGroupArea" className="col-10">
-              <div className="curArea">
-                <div id="currencyInputArea">
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    id="enteredSum"
-                    placeholder="0"
-                    title=""
-                    value={inputDonationAmount}
-                    onChange={(e) => {
-                      setValidation({
-                        ...validation,
-                        isDonationAmountValid: true,
-                      });
-                      setinputDonationAmount(inputValidation(e.target.value));
-                    }}
-                    required
-                  />
-                  {!validation.isDonationAmountValid && (
-                    <ValidationAlert element="DonationAmount" />
-                  )}
-                </div>
-                <div id="curAreaText">
-                  {calculatorPageSelectCurrencyAndEnterAmount}
-                </div>
-              </div>
-            </div>
-          </div>
+          <CurrencyGroup
+            dataFromNBP={dataFromNBP}
+            selectedCurrency={selectedCurrency}
+            validation={validation}
+            setValidation={setValidation}
+            data={data}
+            setSelectedCurrency={setSelectedCurrency}
+            inputDonationAmount={inputDonationAmount}
+            setInputDonationAmount={setInputDonationAmount}
+          />
           <CountGroup
             defaultStates={defaultStates}
             validateAndCountResult={validateAndCountResult}
