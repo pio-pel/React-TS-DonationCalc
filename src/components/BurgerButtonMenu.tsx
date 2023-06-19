@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import LanguageContext from "../contexts/LanguageContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
-export default function BurgerButtonMenu() {
+export function BurgerButtonMenu() {
   const {
     burgerButtonMenuMain,
     burgerButtonMenuCalculator,
@@ -10,6 +10,17 @@ export default function BurgerButtonMenu() {
     burgerButtonMenuMovies,
   } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  const linksArray = [
+    { to: "", class: "fa-house", span: burgerButtonMenuMain },
+    {
+      to: "calculator",
+      class: "fa-calculator",
+      span: burgerButtonMenuCalculator,
+    },
+    { to: "forms", class: "fa-file", span: burgerButtonMenuForms },
+    { to: "movies", class: "fa-film", span: burgerButtonMenuMovies },
+  ];
 
   return (
     <>
@@ -26,22 +37,15 @@ export default function BurgerButtonMenu() {
         className="offCanvasMenuClass"
         style={{ height: isOpen ? "300px" : "0px" }}
       >
-        <Link onClick={() => setIsOpen(!isOpen)} to="/">
-          <i className="fa-solid fa-house">&nbsp;</i>
-          <span>{burgerButtonMenuMain}</span>
-        </Link>
-        <Link onClick={() => setIsOpen(!isOpen)} to="/calculator">
-          <i className="fa-solid fa-calculator">&nbsp;</i>
-          <span>{burgerButtonMenuCalculator}</span>
-        </Link>
-        <Link onClick={() => setIsOpen(!isOpen)} to="/forms">
-          <i className="fa-solid fa-file">&nbsp;</i>
-          <span>{burgerButtonMenuForms}</span>
-        </Link>
-        <Link onClick={() => setIsOpen(!isOpen)} to="/movies">
-          <i className="fa-solid fa-film">&nbsp;</i>
-          <span>{burgerButtonMenuMovies}</span>
-        </Link>
+        {linksArray.map((link) => (
+          <Link onClick={() => setIsOpen(!isOpen)} to={`/${link.to}`}>
+            <i
+              className={`fa-solid ${link.class}`}
+              style={{ marginRight: "5px" }}
+            ></i>
+            <span>{link.span}</span>
+          </Link>
+        ))}
       </div>
     </>
   );

@@ -1,5 +1,4 @@
-import YesDataFromNBP from "./YesDataFromNBP";
-import NoDataFromNBP from "./NoDataFromNBP";
+import { YesDataFromNBP } from "./YesDataFromNBP";
 
 //Return currency menu (when data is available) or waiting spinner
 interface Rates {
@@ -11,12 +10,14 @@ interface Rates {
   }) => void;
 }
 
-function CurrencyMenu({ rates, setSelectedCurrency }: Rates) {
+export function CurrencyMenu({ rates, setSelectedCurrency }: Rates) {
   return rates.length > 1 ? (
     <YesDataFromNBP rates={rates} setSelectedCurrency={setSelectedCurrency} />
   ) : (
-    <NoDataFromNBP />
+    <div className="d-flex justify-content-center">
+      <div className="spinner-border text-secondary" role="status">
+        <span className="visually-hidden"></span>
+      </div>
+    </div>
   );
 }
-
-export default CurrencyMenu;

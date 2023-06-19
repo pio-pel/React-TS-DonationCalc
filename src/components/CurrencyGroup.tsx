@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import LanguageContext from "../contexts/LanguageContext";
-import inputValidation from "../helpers/inputValidation";
-import CurrencyMenu from "../components/CurrencyMenu";
-import ValidationAlert from "../components/ValidationAlert";
+import { LanguageContext } from "../contexts/LanguageContext";
+import { inputValidation } from "../helpers/inputValidation";
+import { CurrencyMenu } from "../components/CurrencyMenu";
+import { ValidationAlert } from "../components/ValidationAlert";
 
 interface CurrencyGroupInterface {
   dataFromNBP: () => Promise<void>;
@@ -34,7 +34,6 @@ export function CurrencyGroup({
         <div
           onClick={dataFromNBP}
           id="currencyChoose"
-          // type="button"
           className="dropdown-toggle curButtons"
           data-bs-toggle="dropdown"
         >

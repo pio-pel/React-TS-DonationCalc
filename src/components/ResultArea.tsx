@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import LanguageContext from "../contexts/LanguageContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 interface Result {
   code: string;
@@ -9,7 +9,7 @@ interface Result {
   taxComment: string;
 }
 
-function ResultArea({
+export function ResultArea({
   result,
   date,
   isHidTrue,
@@ -75,5 +75,3 @@ function ResultArea({
     </div>
   );
 }
-
-export default ResultArea;

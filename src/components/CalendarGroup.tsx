@@ -1,5 +1,5 @@
-import ValidationAlert from "./ValidationAlert";
-import LanguageContext from "../contexts/LanguageContext";
+import { ValidationAlert } from "./ValidationAlert";
+import { LanguageContext } from "../contexts/LanguageContext";
 import { useContext } from "react";
 
 type ValidationType = { [key: string]: boolean };

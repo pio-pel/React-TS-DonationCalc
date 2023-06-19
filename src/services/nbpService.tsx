@@ -1,16 +1,10 @@
+import { DataInterface } from "../interfaces/interfaces";
 const dayInMiliseconds = 1000 * 60 * 60 * 24; //miliseconds, seconds, minutes, hours
 
-interface Data {
-  effectiveDate: string;
-  no: string;
-  rates: [{ currency: string; code: string; mid: string }];
-  table: string;
-}
-
-class NbpService {
+export class NbpService {
   url: string;
   cache: {
-    [key: string]: Data;
+    [key: string]: DataInterface;
   };
   constructor(url: string) {
     this.url = url;
@@ -73,5 +67,3 @@ class NbpService {
       .slice(0, 10);
   }
 }
-
-export default NbpService;

@@ -1,4 +1,4 @@
-function inputValidation(value: string) {
+export function inputValidation(value: string) {
   //input max length 8 digits
   if (value.length > 8) {
     value = value.slice(0, 8);
@@ -13,4 +13,3 @@ function inputValidation(value: string) {
   }
   return value;
 }
-export default inputValidation;

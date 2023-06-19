@@ -1,33 +1,20 @@
-import NbpService from "../services/nbpService";
-import setCalendarDefaultDate from "../helpers/setCalendarDefaultDate";
+import { NbpService } from "../services/nbpService";
+import { setCalendarDefaultDate } from "../helpers/setCalendarDefaultDate";
+import { DataInterface, ResultInterface } from "../interfaces/interfaces";
   
-interface Data {
-    effectiveDate: string;
-    no: string;
-    rates: [{ currency: string; code: string; mid: string }];
-    table: string;
-  }
-  
-  interface Result {
-    code: string;
-    mid: string;
-    result: string;
-    taxAmount: number | string;
-    taxComment: string;
-  }
 
   export const service = new NbpService(
     "https://api.nbp.pl/api/exchangerates/tables/a/"
   );
   export const defaultDate = setCalendarDefaultDate();
   //It's how data object from NBP looks
-  export const initialStateData: Data = {
+  export const initialStateData: DataInterface = {
     effectiveDate: "",
     no: "",
     rates: [{ currency: "", code: "", mid: "" }],
     table: "",
   };
-  export const initialResults: Result = {
+  export const initialResults: ResultInterface = {
     code: "",
     mid: "",
     result: "",

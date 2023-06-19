@@ -1,4 +1,4 @@
-import LanguageContext from "../contexts/LanguageContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 import { useContext } from "react";
 
 interface CountGroupInterface {
@@ -80,7 +80,10 @@ export function CountGroup({
           className="countArea"
         >
           <div>
-            <i className="fa-solid fa-calculator" />
+            <i
+              className="fa-solid fa-calculator"
+              style={{ marginRight: "5px" }}
+            />
             <span>{calculatorPageResultButton}</span>
           </div>
         </div>

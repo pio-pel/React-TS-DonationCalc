@@ -1,6 +1,6 @@
 import { useState } from "react";
-import countResult from "../helpers/countResult";
-import ResultArea from "../components/ResultArea";
+import { countResult } from "../helpers/countResult";
+import { ResultArea } from "../components/ResultArea";
 import { TaxGroup } from "../components/TaxGroup";
 import { CalendarGroup } from "../components/CalendarGroup";
 import { CountGroup } from "../components/CountGroup";

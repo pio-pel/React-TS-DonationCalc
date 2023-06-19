@@ -1,5 +1,5 @@
 // Count tax & return object with tax-sum & comment
-function countTax(selectedTaxGroup: number | null, result: string) {
+export function countTax(selectedTaxGroup: number | null, result: string) {
   const sum = Number(result);
   const taxes: {
     taxAmount: number | string;
@@ -80,4 +80,3 @@ function countTax(selectedTaxGroup: number | null, result: string) {
   }
   return taxes;
 }
-export default countTax;

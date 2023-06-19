@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import LanguageButton from "./LanguageButton";
-import BurgerButtonMenu from "./BurgerButtonMenu";
-import languageChange from "../helpers/languageChange";
-import LanguageContext from "../contexts/LanguageContext";
+import { LanguageButton } from "./LanguageButton";
+import { BurgerButtonMenu } from "./BurgerButtonMenu";
+import { languageChange } from "../helpers/languageChange";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 function Layout() {
   const [languagePack, setLanguagePack] = useState(languageChange("pl"));
@@ -18,7 +18,7 @@ function Layout() {
       />
 
       <div id="header" className="container-fluid pb-3 pt-5 text-white">
-        <i id="calcIcon" className="fa-solid fa-calculator fa-5x"></i>
+        <i id="calcIcon" className="fa-solid fa-calculator fa-5x" />
         <div>
           <h1>Kalkulator podatku od darowizny</h1>
           <p>Narzędzie do obliczania podatku od darowizn w walutach obcych</p>
@@ -29,7 +29,7 @@ function Layout() {
 
       <div id="footer" className="container-fluid my-1 text-white">
         <div>
-          <i className="fa-solid fa-copyright"></i> Piotr Pelikan
+          <i className="fa-solid fa-copyright" /> Piotr Pelikan
         </div>
       </div>
     </LanguageContext.Provider>

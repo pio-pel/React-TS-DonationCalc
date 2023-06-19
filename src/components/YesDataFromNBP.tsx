@@ -1,7 +1,7 @@
 //Menu currency-list filling by data from nbpService
 
 import { useContext } from "react";
-import LanguageContext from "../contexts/LanguageContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 interface Rates {
   rates: [{ code: string; mid: string; currency: string }];
@@ -12,7 +12,7 @@ interface Rates {
   }) => void;
 }
 
-function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
+export function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
   const languagePack = useContext(LanguageContext);
   const currencyList = [];
 
@@ -50,5 +50,3 @@ function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
     </>
   );
 }
-
-export default YesDataFromNBP;
