@@ -1,4 +1,4 @@
-import { languageChange } from "../helpers/languageChange";
+import { languageChange } from "../../helpers/languageChange";
 
 interface LanguageInterface {
   languagePack: { [key: string]: string };

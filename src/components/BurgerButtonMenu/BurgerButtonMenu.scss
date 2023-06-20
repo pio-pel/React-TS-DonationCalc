@@ -1,0 +1,13 @@
+#burgerButton {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  transition: margin-top 0.4s;
+  color: #dddddd;
+  font-size: 40px;
+  cursor: pointer;
+  &:hover {
+    color: #ff9925;
+    transition: 0.4s;
+  }
+}

@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import { LanguageButton } from "./LanguageButton";
-import { BurgerButtonMenu } from "./BurgerButtonMenu";
-import { languageChange } from "../helpers/languageChange";
-import { LanguageContext } from "../contexts/LanguageContext";
+import { LanguageButton } from "../LanguageButton/LanguageButton";
+import { BurgerButtonMenu } from "../BurgerButtonMenu/BurgerButtonMenu";
+import { languageChange } from "../../helpers/languageChange";
+import { LanguageContext } from "../../contexts/LanguageContext";
 
 function Layout() {
   const [languagePack, setLanguagePack] = useState(languageChange("pl"));

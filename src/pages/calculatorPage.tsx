@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { countResult } from "../helpers/countResult";
-import { ResultArea } from "../components/ResultArea";
-import { TaxGroup } from "../components/TaxGroup";
-import { CalendarGroup } from "../components/CalendarGroup";
-import { CountGroup } from "../components/CountGroup";
-import { CurrencyGroup } from "../components/CurrencyGroup";
+import { ResultArea } from "../components/ResultArea/ResultArea";
+import { TaxGroup } from "../components/TaxGroup/TaxGroup";
+import { CalendarGroup } from "../components/CalendarGroup/CalendarGroup";
+import { CountGroup } from "../components/CountGroup/CountGroup";
+import { CurrencyGroup } from "../components/CurrencyGroup/CurrencyGroup";
 import { animationResultShowHide } from "../helpers/animationResultShowHide";
 import {
   defaultDate,

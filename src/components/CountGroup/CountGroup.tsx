@@ -1,4 +1,4 @@
-import { LanguageContext } from "../contexts/LanguageContext";
+import { LanguageContext } from "../../contexts/LanguageContext";
 import { useContext } from "react";
 
 interface CountGroupInterface {

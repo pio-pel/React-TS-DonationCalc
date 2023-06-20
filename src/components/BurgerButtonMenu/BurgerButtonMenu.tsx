@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { LanguageContext } from "../contexts/LanguageContext";
+import { LanguageContext } from "../../contexts/LanguageContext";
+import "./BurgerButtonMenu.scss";
 
 export function BurgerButtonMenu() {
   const {

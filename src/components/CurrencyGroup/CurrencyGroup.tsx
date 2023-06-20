@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { LanguageContext } from "../contexts/LanguageContext";
-import { inputValidation } from "../helpers/inputValidation";
-import { CurrencyMenu } from "../components/CurrencyMenu";
-import { ValidationAlert } from "../components/ValidationAlert";
+import { LanguageContext } from "../../contexts/LanguageContext";
+import { inputValidation } from "../../helpers/inputValidation";
+import { CurrencyMenu } from "./CurrencyMenu";
+import { ValidationAlert } from "../ValidationAlert/ValidationAlert";
 
 interface CurrencyGroupInterface {
   dataFromNBP: () => Promise<void>;
