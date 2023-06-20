@@ -2,7 +2,6 @@ import { NbpService } from "../services/nbpService";
 import { setCalendarDefaultDate } from "../helpers/setCalendarDefaultDate";
 import { DataInterface, ResultInterface } from "../interfaces/interfaces";
   
-
   export const service = new NbpService(
     "https://api.nbp.pl/api/exchangerates/tables/a/"
   );

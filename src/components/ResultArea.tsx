@@ -20,6 +20,42 @@ export function ResultArea({
 }) {
   const languagePack = useContext(LanguageContext);
 
+  const resultsArray = [
+    { id: "resultCurrency", text: "", outcome: result.code, align: "center" },
+    {
+      id: "resultRecord",
+      text: languagePack.resultAreaRecord,
+      outcome: date,
+      align: "between",
+    },
+    {
+      id: "resultRate",
+      text: languagePack.resultAreaRate,
+      outcome: result.mid,
+      align: "between",
+      pln: "PLN",
+    },
+    {
+      id: "resultDonation",
+      text: languagePack.resultAreaDonation,
+      outcome: result.result,
+      align: "between",
+      pln: "PLN",
+      color: "green",
+    },
+    {
+      id: "resultTax",
+      text: languagePack.resultAreaTax,
+      outcome:
+        typeof result.taxAmount === "number"
+          ? result.taxAmount.toFixed(2)
+          : languagePack.resultAreaTaxNoDataInfo,
+      align: "between",
+      pln: "PLN",
+      color: "red",
+    },
+  ];
+
   return (
     <div
       id="resultGroup"
@@ -33,33 +69,17 @@ export function ResultArea({
           id="resultHiddenArea"
           className={`container fw-bold ${isHidTrue ? "hidResult" : ""}`}
         >
-          <div
-            id="resultCurrency"
-            className="d-flex justify-content-center my-3"
-          >
-            <p>{result.code}</p>
-          </div>
-          <div id="resultRecord" className="d-flex justify-content-between">
-            <p>{languagePack.resultAreaRecord}:</p>
-            <p>{date}</p>
-          </div>
-          <div id="resultRate" className="d-flex justify-content-between">
-            <p>{languagePack.resultAreaRate}:</p>
-            <p>{result.mid} PLN</p>
-          </div>
-          <div id="resultDonation" className="d-flex justify-content-between">
-            <p>{languagePack.resultAreaDonation}:</p>
-            <p style={{ color: "green" }}>{result.result} PLN</p>
-          </div>
-          <div id="resultTax" className="d-flex justify-content-between">
-            <p>{languagePack.resultAreaTax}:</p>
-            <p style={{ color: "red" }}>
-              {typeof result.taxAmount === "number"
-                ? result.taxAmount.toFixed(2)
-                : languagePack.resultAreaTaxNoDataInfo}{" "}
-              PLN
-            </p>
-          </div>
+          {resultsArray.map((result) => (
+            <div
+              id={result.id}
+              className={`d-flex justify-content-${result.align}`}
+            >
+              <p>{result.text}</p>
+              <p style={{ color: result.color }}>
+                {result.outcome} {result.pln}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
       <div
