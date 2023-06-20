@@ -29,7 +29,7 @@ export function BurgerButtonMenu() {
         id="burgerButton"
         style={{ marginTop: isOpen ? "300px" : "0px" }}
       >
-        <i className="fa-solid fa-bars"></i>
+        <i className="fa-solid fa-bars" />
       </div>
 
       <div
@@ -39,11 +39,8 @@ export function BurgerButtonMenu() {
       >
         {linksArray.map((link) => (
           <Link onClick={() => setIsOpen(!isOpen)} to={`/${link.to}`}>
-            <i
-              className={`fa-solid ${link.class}`}
-              style={{ marginRight: "5px" }}
-            ></i>
-            <span>{link.span}</span>
+            <i className={`fa-solid ${link.class}`} />
+            <span> {link.span}</span>
           </Link>
         ))}
       </div>

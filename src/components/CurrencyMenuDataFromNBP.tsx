@@ -12,7 +12,7 @@ interface Rates {
   }) => void;
 }
 
-export function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
+export function CurrencyMenuDataFromNBP({ rates, setSelectedCurrency }: Rates) {
   const languagePack = useContext(LanguageContext);
   const currencyList = [];
 
@@ -39,7 +39,7 @@ export function YesDataFromNBP({ rates, setSelectedCurrency }: Rates) {
 
   currencyList.splice(2, 0, {
     id: "divider",
-    html: <hr className="dropdown-divider"></hr>,
+    html: <hr className="dropdown-divider" />,
   });
 
   return (

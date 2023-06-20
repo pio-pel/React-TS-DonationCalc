@@ -15,21 +15,21 @@ const FormsPage = () => {
 
   const formsArray = [
     {
-      imgSrc: "./img/sdz2.jpg",
+      img: "./img/sdz2.jpg",
       alt: "SD-Z2",
       link: "https://www.podatki.gov.pl/media/4148/sd-z2-06-014.pdf",
       title: formPageFormOneTitle,
       text: formPageFormOneText,
     },
     {
-      imgSrc: "./img/sd3.jpg",
+      img: "./img/sd3.jpg",
       alt: "SD-3",
       link: "https://www.podatki.gov.pl/media/4142/sd-3-06-015.pdf",
       title: formPageFormTwoTitle,
       text: formPageFormTwoText,
     },
     {
-      imgSrc: "./img/sd3a.jpg",
+      img: "./img/sd3a.jpg",
       alt: "SD-3A",
       link: "https://www.podatki.gov.pl/media/4144/sd-3a-06-014.pdf",
       title: formPageFormThreeTitle,
@@ -43,7 +43,7 @@ const FormsPage = () => {
         {formsArray.map((form) => (
           <div className="col-lg d-flex flex-column my-3 align-items-center">
             <div className="card" style={{ width: "18rem" }}>
-              <img src={form.imgSrc} className="card-img-top" alt={form.alt} />
+              <img src={form.img} className="card-img-top" alt={form.alt} />
               <div className="card-body">
                 <h5 className="card-title">{form.title}</h5>
                 <p className="card-text">{form.text}</p>

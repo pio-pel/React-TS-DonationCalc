@@ -1,4 +1,4 @@
-import { YesDataFromNBP } from "./YesDataFromNBP";
+import { CurrencyMenuDataFromNBP } from "./CurrencyMenuDataFromNBP";
 
 //Return currency menu (when data is available) or waiting spinner
 interface Rates {
@@ -12,7 +12,10 @@ interface Rates {
 
 export function CurrencyMenu({ rates, setSelectedCurrency }: Rates) {
   return rates.length > 1 ? (
-    <YesDataFromNBP rates={rates} setSelectedCurrency={setSelectedCurrency} />
+    <CurrencyMenuDataFromNBP
+      rates={rates}
+      setSelectedCurrency={setSelectedCurrency}
+    />
   ) : (
     <div className="d-flex justify-content-center">
       <div className="spinner-border text-secondary" role="status">

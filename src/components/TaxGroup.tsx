@@ -15,6 +15,13 @@ export function TaxGroup({
     languagePack[`groupSelect${selectedTaxGroup}`];
   const commentDefault = languagePack.groupSelectNone;
 
+  const buttonsArray = [
+    { arabic: 0, roman: '"0"' },
+    { arabic: 1, roman: "I" },
+    { arabic: 2, roman: "II" },
+    { arabic: 3, roman: "III" },
+  ];
+
   function ButtonGroupSelect({
     buttonNumber,
   }: {
@@ -38,10 +45,9 @@ export function TaxGroup({
   return (
     <div id="taxGroup" className="row mb-2 gx-2">
       <div id="taxGroupButtons" className="col-2">
-        <ButtonGroupSelect buttonNumber={{ arabic: 0, roman: '"0"' }} />
-        <ButtonGroupSelect buttonNumber={{ arabic: 1, roman: "I" }} />
-        <ButtonGroupSelect buttonNumber={{ arabic: 2, roman: "II" }} />
-        <ButtonGroupSelect buttonNumber={{ arabic: 3, roman: "III" }} />
+        {buttonsArray.map((buttonProperties) => (
+          <ButtonGroupSelect buttonNumber={buttonProperties} />
+        ))}
       </div>
       <div id="taxGroupArea" className="col-10">
         <div className="tArea">

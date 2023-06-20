@@ -80,11 +80,8 @@ export function CountGroup({
           className="countArea"
         >
           <div>
-            <i
-              className="fa-solid fa-calculator"
-              style={{ marginRight: "5px" }}
-            />
-            <span>{calculatorPageResultButton}</span>
+            <i className="fa-solid fa-calculator" />
+            <span> {calculatorPageResultButton}</span>
           </div>
         </div>
       </div>
