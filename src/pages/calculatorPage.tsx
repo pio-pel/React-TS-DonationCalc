@@ -13,7 +13,7 @@ import {
   initialSelectedCurrency,
   initialStateData,
   initialValidation,
-} from "../consts/consts";
+} from "../constants/constants";
 
 function Calculator() {
   const [calendarDate, setCalendarDate] = useState(defaultDate);

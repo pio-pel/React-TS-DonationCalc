@@ -1,6 +1,7 @@
 import { ValidationAlert } from "../ValidationAlert/ValidationAlert";
 import { LanguageContext } from "../../contexts/LanguageContext";
 import { useContext } from "react";
+import "./CalendarGroup.scss";
 
 type ValidationType = { [key: string]: boolean };
 type SelectedCurrencyType = { [key: string]: string };
@@ -29,10 +30,10 @@ export function CalendarGroup({
   const { calculatorPageSelectDate } = useContext(LanguageContext);
 
   return (
-    <div id="calendarGroup" className="row mb-2 gx-2">
-      <div id="calendarGroupButtons" className="col-2">
-        <div className="cButtons">
-          <i className="fa-regular fa-calendar-days"></i>
+    <div className="row mb-2 gx-2">
+      <div className="col-2">
+        <div className="calendarLeftButton">
+          <i className="fa-regular fa-calendar-days" />
         </div>
       </div>
       <div id="calendarGroupArea" className="col-10">

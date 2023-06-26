@@ -1,0 +1,44 @@
+@import "../../scss/globals.scss";
+
+$transition-time: 0.4s;
+
+.burgerButtonMenu {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  transition: margin-top $transition-time;
+  color: $color-white;
+  font-size: 40px;
+  cursor: pointer;
+  &:hover {
+    color: $color-orange;
+    transition: $transition-time;
+  }
+}
+
+.offCanvasMenu {
+  height: 0px;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: $color-black;
+  opacity: 0.92;
+  overflow: hidden;
+  transition: $transition-time;
+}
+
+.offCanvasMenuLinks {
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 30px;
+  text-decoration: none;
+  font-size: $font-size-medium;
+  color: $color-grey;
+  display: block;
+  transition: $transition-time;
+  &:hover {
+    color: $color-white;
+  }
+}

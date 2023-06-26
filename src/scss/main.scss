@@ -12,20 +12,6 @@ body {
   justify-content: space-between;
 }
 
-// #burgerButton {
-//   position: absolute;
-//   top: 0px;
-//   left: 10px;
-//   transition: margin-top 0.4s;
-//   color: #dddddd;
-//   font-size: 40px;
-//   cursor: pointer;
-//   &:hover {
-//     color: $orange;
-//     transition: 0.4s;
-//   }
-// }
-
 #languageButton,
 #btnradio1,
 #btnradio2 {
@@ -50,41 +36,12 @@ body {
   padding-left: 15px;
 }
 
-.offCanvasMenuClass {
-  height: 0px;
-  width: 100%;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.94);
-  overflow: hidden;
-  transition: 0.4s;
-}
-
-.offCanvasMenuClass a {
-  text-align: left;
-  margin-left: 20px;
-  margin-top: 30px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #999999;
-  display: block;
-  transition: 0.4s;
-  text-shadow: none;
-  &:hover {
-    color: white;
-  }
-}
-
 #taxGroupArea,
-#calendarGroupArea,
 #currencyGroupArea {
   margin-bottom: 5px;
 }
 
 .tButtons,
-.cButtons,
 .curButtons,
 .countArea,
 .trButtons {
@@ -106,12 +63,6 @@ body {
 .countArea,
 .trButtons {
   margin-bottom: 0px;
-}
-
-.cButtons {
-  cursor: default;
-  border: none;
-  background-color: rgba(0, 66, 82, 0.849);
 }
 
 .tArea,

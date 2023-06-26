@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "../../contexts/LanguageContext";
-import "./BurgerButtonMenu.scss";
+import styles from "./BurgerButtonMenu.module.scss";
 
 export function BurgerButtonMenu() {
   const {
@@ -27,19 +27,22 @@ export function BurgerButtonMenu() {
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        id="burgerButton"
+        className={styles.burgerButtonMenu}
         style={{ marginTop: isOpen ? "300px" : "0px" }}
       >
         <i className="fa-solid fa-bars" />
       </div>
 
       <div
-        id="offCanvasMenu"
-        className="offCanvasMenuClass"
+        className={styles.offCanvasMenu}
         style={{ height: isOpen ? "300px" : "0px" }}
       >
         {linksArray.map((link) => (
-          <Link onClick={() => setIsOpen(!isOpen)} to={`/${link.to}`}>
+          <Link
+            onClick={() => setIsOpen(!isOpen)}
+            to={`/${link.to}`}
+            className={styles.offCanvasMenuLinks}
+          >
             <i className={`fa-solid ${link.class}`} />
             <span> {link.span}</span>
           </Link>
